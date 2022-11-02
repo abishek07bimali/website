@@ -1,0 +1,29 @@
+.img{
+    height: 400px;
+    width: 300px;
+    border: 2px solid black;
+    margin: auto;
+    position: relative;
+
+ }
+ .image{
+    height:100%;
+    width: 100%;
+ }
+
+ .dev{
+    width: 100%;
+    text-align: center;
+    background-color: gray;
+    color: white;
+    position: absolute;
+    left: 0;
+    bottom: -22px;
+    opacity: 0;
+    transition: 1s;
+ }
+
+ .img:hover .dev{
+    opacity: 0.8;
+    bottom: 0px;
+ }
