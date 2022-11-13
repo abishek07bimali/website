@@ -1,4 +1,88 @@
- .img{
+ /* ========defining variables====== */
+:root{
+   --primary: rgb(41, 126, 82);
+   --secondary: blue;
+   --third: green;
+   --white: rgb(234, 228, 228);
+   --black: black;
+}
+
+nav{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   background-color: var(--white);
+   padding: 10px
+}
+.option{
+   text-decoration: none;
+}
+li{
+   list-style-type: none;
+}
+li a{
+   text-decoration: none;
+   font-size: 2rem;
+   margin: 10px;
+}
+
+
+/* title (avi bimali) */
+ .header{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: var(--primary);
+   margin: 0px;
+   padding: 10px;
+ }
+ 
+ /* ==========body=========== */
+ .bodyStyle{
+   min-width: 70vh;
+   /* border: 3px blue solid; */
+   display: flex;
+   justify-content: center;
+}
+img{
+    border: 4px rgb(0, 47, 255) solid;
+    border-radius: 60%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ 
+
+ /* =======footer======== */
+ footer{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   background-color: var(--primary);
+   padding: 10px;
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ /* .img{
     height: 400px;
     width: 300px;
     border: 2px solid black;
@@ -55,7 +139,7 @@
    color: #000000;
    background-color: #ffffff;
 } */
-
+/* 
 .navigation {
    height: 40px;
    width: 100%;
@@ -76,6 +160,7 @@
 /* .navigation span:hover{
    font-size: 25px;
 } */
+/*
 .navigation ul li {
    list-style: none;
    display: inline-block;
@@ -132,4 +217,4 @@
 }
 .right{
    float: right;
-}
+} */ 
