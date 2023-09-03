@@ -4,19 +4,16 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your code from your version control system (e.g., Git)
                 script {
-                    def scmVars = checkout scm
-                    echo "Checked out ${scmVars.GIT_BRANCH} branch"
+                    def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], userRemoteConfigs: [[url: 'YOUR_REPO_URL']]])
+                    echo "Checked out 'main' branch"
                 }
             }
         }
 
         stage('Deploy to Local Server') {
             steps {
-                // Copy your static website files to the local server directory
-                // Replace '/path/to/local/server' with the actual path to your local server directory
-                sh "cp -r * /path/to/local/server/"
+                sh "cp -r * /var/www/html/" // Assuming your local server root directory is /var/www/html/
 
                 // Optionally, you can perform additional deployment steps here.
             }
@@ -25,7 +22,6 @@ pipeline {
 
     post {
         always {
-            // Clean up workspace (optional)
             cleanWs()
         }
     }
