@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your code from your version control system (e.g., Git)
+                script {
+                    def scmVars = checkout scm
+                    echo "Checked out ${scmVars.GIT_BRANCH} branch"
+                }
+            }
+        }
+
+        stage('Deploy to Local Server') {
+            steps {
+                // Copy your static website files to the local server directory
+                // Replace '/path/to/local/server' with the actual path to your local server directory
+                sh "cp -r * /path/to/local/server/"
+
+                // Optionally, you can perform additional deployment steps here.
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up workspace (optional)
+            cleanWs()
+        }
+    }
+}
