@@ -10,12 +10,18 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy to Local Server') {
             steps {
-                sh "cp -r * /var/www/html/" // Assuming your local server root directory is /var/www/html/
+                def localServerDir = '/var/www/html/'
+        
+                sh "rm -rf ${localServerDir}*"
+        
+                sh "cp -r * ${localServerDir}"
+        
 
-                // Optionally, you can perform additional deployment steps here.
+                sh 'sudo systemctl restart nginx' 
+
+                echo "Website deployed to ${localServerDir}"
             }
         }
     }
