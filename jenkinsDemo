@@ -45,6 +45,7 @@ pipeline {
 
                     withCredentials([sshUserPrivateKey(credentialsId: 'ubuntu_server', keyFileVariable: 'SSH_KEY')]) {
                         sh "scp -i $SSH_KEY -r ${sourceDir} ${sshAddress}:${destinationDir}"
+}
                    
 
 
@@ -66,4 +67,4 @@ pipeline {
         }
     }
 }
-}
+
