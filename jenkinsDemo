@@ -54,6 +54,7 @@ pipeline {
                      //  sh "scp -r ${sourceDir} ${sshAddress}:${destinationDir}"
                     //}
                     echo "Files copied to ${sshAddress}:${destinationDir}"
+
                 }
             }
         }
@@ -64,4 +65,5 @@ pipeline {
             cleanWs()
         }
     }
+}
 }
