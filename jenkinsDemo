@@ -42,10 +42,10 @@ pipeline {
                     
                     // Define the SSH address of the deployment server
                     def sshAddress = 'ubuntu@103.90.86.38'
-                    sshagent(['Ubuntu_cred']){
+                    sshagent(['jenkins_cred']){
                         sh "scp -r ${sourceDir} ${sshAddress}:${destinationDir}"
                     }
-                    echo "Files copied to ${sshAddress}:${destinationDir} and Nginx restarted on the deployment server"
+                    echo "Files copied to ${sshAddress}:${destinationDir}"
                 }
             }
         }
