@@ -15,6 +15,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy to Local Server') {
             steps {
                 // Remove existing files (optional)
@@ -23,10 +24,33 @@ pipeline {
                 // Copy all files and directories from the workspace to the local server directory
                 sh "cp -r * ${localServerDir}"
 
-                // Restart the Nginx web server
-                sh 'sudo systemctl restart nginx' 
+                // Restart the Nginx web server on the local server
+                sh 'sudo systemctl restart nginx'
 
                 echo "Website deployed to ${localServerDir}"
+            }
+        }
+
+        stage('Copy to Deployment Server') {
+            steps {
+                script {
+                    // Define the source directory on the Jenkins agent where the artifacts are located
+                    def sourceDir = '/var/www/html/'
+                    
+                    // Define the destination directory on the deployment server
+                    def destinationDir = '/home/ubuntu/test_jenkins'
+                    
+                    // Define the SSH address of the deployment server
+                    def sshAddress = 'ubuntu@103.90.86.38'
+                    
+                    // Use SCP to securely copy files to the deployment server
+                    sh "scp -r ${sourceDir} ${sshAddress}:${destinationDir}"
+                    
+                    // Restart the Nginx web server on the deployment server (if needed)
+                    sh 'ssh ${sshAddress} "sudo systemctl restart nginx"'
+                    
+                    echo "Files copied to ${sshAddress}:${destinationDir} and Nginx restarted on the deployment server"
+                }
             }
         }
     }
