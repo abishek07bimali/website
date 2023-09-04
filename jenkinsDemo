@@ -42,14 +42,9 @@ pipeline {
                     
                     // Define the SSH address of the deployment server
                     def sshAddress = 'ubuntu@103.90.86.38'
-                    sshagent(['Ubuntu_cred']{
+                    sshagent(['Ubuntu_cred']){
                         sh "scp -r ${sourceDir} ${sshAddress}:${destinationDir}"
                     }
-                    // Use SCP to securely copy files to the deployment server
-                    
-                    // Restart the Nginx web server on the deployment server (if needed)
-                    // sh 'ssh ${sshAddress} "sudo systemctl restart nginx"'
-                    
                     echo "Files copied to ${sshAddress}:${destinationDir} and Nginx restarted on the deployment server"
                 }
             }
